@@ -19,29 +19,35 @@ The following techologies (along with versions) have been used to do the deploym
 
 ## Getting started
 First you will need to clone this directory to your local machine.
+Then please follow the following steps
+### 1. Build docker images and upload to repo
 Next you will need to build the docker images. Note that you need to upload these docker images to a private or public container registry.
 The reason for this is that kubernetes needs to pull the images from somewhere ( so your local machine doesn't work).
 
+I build 2 of the images on my perosnal docker hub public repo: https://hub.docker.com/r/ycallaert/azure_kafka_aks/tags/
+You can download them from here or build yourself
+
 Now scan the project for the `TODO` keyword as you will need to change a couple of things in the project
 
-### 1. Change variables secret
+
+### 2. Change variables secret
 The file, `variables.dev.secret.sh` , will hold the necessary values for azure connection as well as the configuration for your machines inside the kubernetes cluster.
 Some values are left blank as you will need to fill in the correct values for your azure account.
 Also verify the type of machine you want to use.
 
 If you are done, do not forget to source this file before starting terraform
 
-### 2. terraform/aks_manifests/kafka/50_kafka.yml
+### 3. terraform/aks_manifests/kafka/50_kafka.yml
 Here I referenced my own image (my private repo has been removed from the name).
 It would be best to replace this with your own build image.
 If you are using a private repository you can uncomment the section for `imagePullSecrets`
 
-### 3. terraform/aks_manifests/yahoo_kafka_manager/20_kafka_manager.yml
+### 4. terraform/aks_manifests/yahoo_kafka_manager/20_kafka_manager.yml
 Here I referenced my own image (my private repo has been removed from the name).
 It would be best to replace this with your own build image.
 If you are using a private repository you can uncomment the section for `imagePullSecrets`
 
-### 4. terraform/aks_manifests/zookeeper/50_pzoo.yml and 51_zoo.yml
+### 5. terraform/aks_manifests/zookeeper/50_pzoo.yml and 51_zoo.yml
 Here I referenced my own image (my private repo has been removed from the name).
 It would be best to replace this with your own build image.
 If you are using a private repository you can uncomment the section for `imagePullSecrets`
