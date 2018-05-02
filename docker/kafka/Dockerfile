@@ -1,0 +1,26 @@
+FROM alpine:3.7
+MAINTAINER Yves
+
+ENV KAFKA_VERSION=1.1.0 \
+SCALA_VERSION=2.11 \
+SCALA_HOME=/opt/scala
+
+RUN apk upgrade --update && apk add --no-cache curl openjdk8-jre tar bash netcat-openbsd
+RUN mkdir -p /opt/scala \
+&& mkdir -p /opt/kafka
+RUN curl -LO "http://www.scala-lang.org/files/archive/scala-${SCALA_VERSION}.0.tgz" \
+&& curl -LO "https://www-eu.apache.org/dist/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz"
+RUN mv scala-${SCALA_VERSION}.0.tgz /opt/scala/ \
+&& mv kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz /opt/kafka/
+
+WORKDIR /opt/scala
+RUN tar -xzvf /opt/scala/scala-${SCALA_VERSION}.0.tgz --strip-components=1
+
+WORKDIR /opt/kafka
+RUN tar -xzvf /opt/kafka/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz --strip-components=1
+
+RUN rm -rf /opt/kafka/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz \
+&& rm -rf /opt/scala/scala-${SCALA_VERSION}.0.tgz
+
+COPY kafka_config_files/server.properties /opt/kafka/config/ \
+&& kafka_config_files/log4j.properties /opt/kafka/config/
