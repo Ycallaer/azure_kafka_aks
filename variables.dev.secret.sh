@@ -1,3 +1,4 @@
+#TODO: Fill this template with the correct values
 #Azure Subscription related vars -> these can be asked with you azure admin
 export ARM_SUBSCRIPTION_ID=""
 export ARM_TENANT_ID=""
