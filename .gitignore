@@ -1,0 +1,7 @@
+palantir.tf
+terraform.tfvars
+*.retry
+.idea/*
+deploykey
+.terraform/
+inventory
