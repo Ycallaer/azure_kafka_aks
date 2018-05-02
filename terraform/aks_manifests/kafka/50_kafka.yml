@@ -21,7 +21,7 @@ spec:
       initContainers:
       - name: init-config
         #TODO: Replace this image with your own custom build if you want
-        image: kafkacubeimages.azurecr.io/kafka_init_utils
+        image: xxx/kafka_init_utils
         env:
         - name: NODE_NAME
           valueFrom:
@@ -44,7 +44,7 @@ spec:
       containers:
       - name: broker
         #TODO: Replace this image with your own custom build if you want
-        image: kafkacubeimages.azurecr.io/kafka_alpine
+        image: xxx/kafka_alpine
         env:
         - name: KAFKA_LOG4J_OPTS
           value: -Dlog4j.configuration=file:/opt/kafka/config/log4j.properties

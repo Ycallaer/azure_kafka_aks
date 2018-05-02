@@ -16,7 +16,7 @@ spec:
       containers:
       - name: kafka-manager
         #TODO: Replace this image with your own custom build if you want
-        image: kafkacubeimages.azurecr.io/kafka_yahoo_manager
+        image: xxx/kafka_yahoo_manager
         ports:
         - containerPort: 80
         env:

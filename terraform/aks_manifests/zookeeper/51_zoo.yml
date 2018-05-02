@@ -23,7 +23,7 @@ spec:
       initContainers:
       - name: init-config
         #TODO: Replace this image with your own custom build if you want
-        image: kafkacubeimages.azurecr.io/kafka_init_utils
+        image: xxx/kafka_init_utils
         command: ['/bin/bash', '/etc/kafka-configmap/init.sh']
         env:
         - name: ID_OFFSET

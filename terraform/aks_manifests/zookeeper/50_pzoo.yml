@@ -23,7 +23,7 @@ spec:
       initContainers:
       - name: init-config
         #TODO: Replace this image with your own custom build if you want
-        image: kafkacubeimages.azurecr.io/kafka_init_utils
+        image: xxx/kafka_init_utils
         command: ['/bin/bash', '/etc/kafka-configmap/init.sh']
         volumeMounts:
         - name: configmap
@@ -34,7 +34,8 @@ spec:
           mountPath: /var/lib/zookeeper/data
       containers:
       - name: zookeeper
-        image: kafkacubeimages.azurecr.io/kafka_alpine
+        #TODO: Replace this image with your own custom build if you want
+        image: xxx/kafka_alpine
         env:
         - name: KAFKA_LOG4J_OPTS
           value: -Dlog4j.configuration=file:/etc/kafka/log4j.properties
