@@ -51,6 +51,8 @@ If you are using a private repository you can uncomment the section for `imagePu
 Before you can start the terraform make sure that the az cli is available. If you are using a virtualenv make sure to source it before starting.
 If 2 factored authentication is activated make sure to run `az login` before proceeding.
 
+Next source the `variables.dev.secret.sh` file so that the environment variables are present for the deployment
+
 The deployment is completely done using terraform.
 First make sure that your working directory is the terraform directory of the project.
 Next issue the command `terraform init`.
