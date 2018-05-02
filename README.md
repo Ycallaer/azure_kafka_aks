@@ -1,4 +1,4 @@
-#Azure kafka aks
+# Azure kafka aks
 
 ##Goal of the repo
 The repo will do a deploy of a Kubernetes cluster on azure and will run kafka, zookeeper and kafka manager on the cluster.
