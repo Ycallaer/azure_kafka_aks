@@ -1,4 +1,3 @@
-palantir.tf
 terraform.tfvars
 *.retry
 .idea/*
