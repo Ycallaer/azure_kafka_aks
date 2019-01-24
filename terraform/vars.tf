@@ -14,6 +14,14 @@ variable "azureClientId" {
   description = "Client id for azure"
 }
 
+variable "NexusUsername" {
+  description = "Username for nexus"
+}
+
+variable "NexusPassword" {
+  description = "Password for nexus"
+}
+
 variable "sshKeyData" {
   description = "ssh key to authenticate against the cluster"
 }

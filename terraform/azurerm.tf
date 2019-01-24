@@ -1,6 +1,6 @@
 # Microsoft Azure Provider
 provider "azurerm" {
-  version = "1.4.0"
+  version = "~>1.5"
 }
 
 # Source the resource group from Azure

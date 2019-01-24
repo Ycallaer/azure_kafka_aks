@@ -22,20 +22,19 @@ First you will need to clone this directory to your local machine.
 Then please follow the following steps
 ### 1. Build docker images and upload to repo
 Next you will need to build the docker images. Note that you need to upload these docker images to a private or public container registry.
-The reason for this is that kubernetes needs to pull the images from somewhere ( so your local machine doesn't work).
+The reason for this is that kubernetes needs to pull the images from somewhere (your local machine doesn't work).
 
-I build 2 of the images on my perosnal docker hub public repo: https://hub.docker.com/r/ycallaert/azure_kafka_aks/tags/
-You can download them from here or build yourself
+I build 2 of the images on my personal docker hub public repo: https://hub.docker.com/r/ycallaert/azure_kafka_aks/tags/
+You can download them from here or build yourself.
 
-Now scan the project for the `TODO` keyword as you will need to change a couple of things in the project
-
+Now scan the project for the `TODO` keyword as you will need to change a couple of things in the project.
 
 ### 2. Change variables secret
-The file, `variables.dev.secret.sh` , will hold the necessary values for azure connection as well as the configuration for your machines inside the kubernetes cluster.
+The file, `variables.dev.secret.sh`, will hold the necessary values for azure connection as well as the configuration for your machines inside the kubernetes cluster.
 Some values are left blank as you will need to fill in the correct values for your azure account.
 Also verify the type of machine you want to use.
 
-If you are done, do not forget to source this file before starting terraform
+If you are done, do not forget to source this file before starting terraform.
 
 ### 3. terraform/aks_manifests/kafka/50_kafka.yml
 Here I referenced my own image (my private repo has been removed from the name).
@@ -52,9 +51,12 @@ Here I referenced my own image (my private repo has been removed from the name).
 It would be best to replace this with your own build image.
 If you are using a private repository you can uncomment the section for `imagePullSecrets`
 
+### 5. terraform/aks_manifests/aks_manifest.tf
+If you are using a private registry service such as Nexus, you need to uncomment the block of code that registers the secrets in the kubernetes cluster.
+
 ## Deployment
 
-Before you can start the terraform make sure that the az cli is available. If you are using a virtualenv make sure to source it before starting.
+Before you can start the terraform make sure that the `az cli` is available. If you are using a virtualenv make sure to source it before starting.
 If 2 factored authentication is activated make sure to run `az login` before proceeding.
 
 Next source the `variables.dev.secret.sh` file so that the environment variables are present for the deployment
@@ -62,7 +64,7 @@ Next source the `variables.dev.secret.sh` file so that the environment variables
 The deployment is completely done using terraform.
 First make sure that your working directory is the terraform directory of the project.
 Next issue the command `terraform init`.
-This will download the necessary plugins for the project
+This will download the necessary plugins for the project.
 
 Next run `terraform apply`. This will generate a plan and tell you how many objects will be created.
 Type `yes` when prompted for the deployment.
