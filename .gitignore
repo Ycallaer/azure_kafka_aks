@@ -1,6 +1,8 @@
 terraform.tfvars
 *.retry
 .idea/*
+*.iml
 deploykey
 .terraform/
 inventory
+*~

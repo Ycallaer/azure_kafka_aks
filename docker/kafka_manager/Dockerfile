@@ -1,7 +1,7 @@
 FROM alpine:3.7
 MAINTAINER Yves
 
-ENV KAFKA_MGR_VERSION=1.3.3.17 \
+ENV KAFKA_MGR_VERSION=1.3.3.22 \
 SBT_VERSION=0.13.14
 
 RUN apk upgrade --update && apk add --no-cache curl openjdk8 bash netcat-openbsd unzip
