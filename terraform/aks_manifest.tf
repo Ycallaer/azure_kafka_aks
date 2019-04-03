@@ -31,7 +31,6 @@ resource "null_resource" "kubernetes_resource" {
     command = <<EOT
       export KUBECONFIG="/tmp/${var.kubernetesClusterName}.conf"
       kubectl apply -f aks_manifests/zookeeper/00_namespace.yml && \
-      kubectl apply -f aks_manifests/secrets/00_secret_azure_container.yml && \
       kubectl apply -f aks_manifests/zookeeper/10_zookeeper_config.yml && \
       kubectl apply -f aks_manifests/zookeeper/20_pzookeeper_service.yml && \
       kubectl apply -f aks_manifests/zookeeper/21_zookeeper_service.yml && \
