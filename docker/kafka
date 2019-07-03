@@ -9,7 +9,7 @@ RUN apk upgrade --update && apk add --no-cache curl openjdk8-jre tar bash netcat
 RUN mkdir -p /opt/scala \
 && mkdir -p /opt/kafka
 RUN curl -LO "http://www.scala-lang.org/files/archive/scala-${SCALA_VERSION}.0.tgz" \
-&& curl -LO "https://www-eu.apache.org/dist/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz"
+&& curl -LO "https://archive.apache.org/dist/kafka/$KAFKA_VERSION/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz"
 RUN mv scala-${SCALA_VERSION}.0.tgz /opt/scala/ \
 && mv kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz /opt/kafka/
 
@@ -22,5 +22,5 @@ RUN tar -xzvf /opt/kafka/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz --strip-compone
 RUN rm -rf /opt/kafka/kafka_$SCALA_VERSION-$KAFKA_VERSION.tgz \
 && rm -rf /opt/scala/scala-${SCALA_VERSION}.0.tgz
 
-COPY kafka_config_files/server.properties /opt/kafka/config/ \
-&& kafka_config_files/log4j.properties /opt/kafka/config/
+COPY kafka_config_files/server.properties /opt/kafka/config/
+COPY kafka_config_files/log4j.properties /opt/kafka/config/
