@@ -10,20 +10,20 @@ RUN curl -sL "http://dl.bintray.com/sbt/native-packages/sbt/$SBT_VERSION/sbt-$SB
     chmod 0755 /usr/local/bin/sbt
 #
 RUN mkdir -p /opt/kafka-manager-src && \
-curl -LO https://github.com/yahoo/kafka-manager/archive/master.zip && \
-mv master.zip  /opt/kafka-manager-src/
+curl -LO https://github.com/yahoo/kafka-manager/archive/$KAFKA_MGR_VERSION.zip && \
+mv $KAFKA_MGR_VERSION.zip  /opt/kafka-manager-src/
 
 WORKDIR /opt/kafka-manager-src/
-RUN unzip master.zip && rm -rf master.zip
-WORKDIR /opt/kafka-manager-src/kafka-manager-master
+RUN unzip $KAFKA_MGR_VERSION.zip && rm -rf $KAFKA_MGR_VERSION.zip
+WORKDIR /opt/kafka-manager-src/kafka-manager-$KAFKA_MGR_VERSION
 RUN sbt clean dist && \
-mv /opt/kafka-manager-src/kafka-manager-master/target/universal/kafka-manager-$KAFKA_MGR_VERSION.zip /opt && \
+mv /opt/kafka-manager-src/kafka-manager-$KAFKA_MGR_VERSION/target/universal/kafka-manager-$KAFKA_MGR_VERSION.zip /opt && \
 rm -rf /opt/kafka-manager-src
 WORKDIR /opt
 RUN unzip /opt/kafka-manager-$KAFKA_MGR_VERSION.zip && \
 mv /opt/kafka-manager-$KAFKA_MGR_VERSION /opt/kafka-manager && \
 chmod 755 -R /opt/kafka-manager && \
 rm -rf /var/cache/apk/*
-
+#
 WORKDIR /opt/kafka-manager
 ENTRYPOINT ["./bin/kafka-manager"]
